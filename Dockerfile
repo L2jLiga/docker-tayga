@@ -10,7 +10,7 @@ ENV \
 	TAYGA_CONF_PREFIX=64:ff9b::/96 \
 	TAYGA_CONF_DYNAMIC_POOL=172.18.0.128/25
 
-RUN apk add --no-cache tayga
+RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing tayga
 ADD docker-entry.sh /
 RUN chmod +x /docker-entry.sh
 
