@@ -20,7 +20,9 @@ ENV \
     TAYGA_CONF_DYNAMIC_POOL=172.18.0.128/25 \
     TAYGA_CONF_FRAG=true
 
-RUN apt-get install tayga -y --no-install-recommends
+RUN apt-get update && \
+    apt-get install tayga -y --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY docker-entry.sh /
 RUN chmod +x /docker-entry.sh
