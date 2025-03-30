@@ -1,8 +1,15 @@
-FROM alpine:edge
+FROM debian:trixie-slim
 
-RUN apk add --no-cache \
-    -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-    tayga=0.9.2-r0
+LABEL \
+    maintainer="L2jLiga <l2jliga@gmail.com>" \
+    org.opencontainers.image.title="tayga" \
+    org.opencontainers.image.description="Docker image for NAT64 using Tayga" \
+    org.opencontainers.image.vendor="L2jLiga" \
+    org.opencontainers.image.authors="L2jLiga <l2jliga@gmail.com>" \
+    org.opencontainers.image.licenses="Apache License 2.0" \
+    org.opencontainers.image.source="https://github.com/L2jLiga/docker-tayga" \
+    org.opencontainers.image.documentation="https://github.com/L2jLiga/docker-tayga/blob/master/README.md" \
+    org.opencontainers.image.version="0.9.2-10"
 
 ENV \
     TAYGA_CONF_DATA_DIR=/var/db/tayga \
@@ -13,19 +20,10 @@ ENV \
     TAYGA_CONF_DYNAMIC_POOL=172.18.0.128/25 \
     TAYGA_CONF_FRAG=true
 
+RUN apt-get install tayga -y --no-install-recommends
+
 COPY docker-entry.sh /
 RUN chmod +x /docker-entry.sh
 
 # Labels
-LABEL \
-    maintainer="L2jLiga <l2jliga@gmail.com>" \
-    org.opencontainers.image.title="tayga" \
-    org.opencontainers.image.description="Docker image for NAT64 using Tayga" \
-    org.opencontainers.image.vendor="L2jLiga" \
-    org.opencontainers.image.authors="L2jLiga <l2jliga@gmail.com>" \
-    org.opencontainers.image.licenses="Apache License 2.0" \
-    org.opencontainers.image.source="https://github.com/L2jLiga/docker-tayga" \
-    org.opencontainers.image.documentation="https://github.com/L2jLiga/docker-tayga/blob/master/README.md" \
-    org.opencontainers.image.version="0.9.2-r0"
-
 ENTRYPOINT ["/docker-entry.sh"]
