@@ -1,7 +1,5 @@
 FROM alpine:edge
 
-LABEL org.opencontainers.image.authors="jiaxun.yang@flygoat.com"
-
 RUN apk add --no-cache \
     -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     tayga=0.9.2-r0
