@@ -10,7 +10,7 @@ tee /etc/default/tayga > /dev/null <<EOF
 CONFIGURE_IFACE="yes"
 
 # Configure NAT44 for the private IPv4 range
-CONFIGURE_NAT44="yes"
+CONFIGURE_NAT44="no"
 
 # Additional options that are passed to the Daemon.
 DAEMON_OPTS=""
