@@ -1,4 +1,4 @@
-FROM debian:trixie
+FROM debian:bookworm-slim
 
 LABEL \
     maintainer="L2jLiga <l2jliga@gmail.com>" \
@@ -19,7 +19,7 @@ ENV \
     TAYGA_CONF_FRAG=true
 
 RUN apt-get update && \
-    apt-get install tayga -y --no-install-recommends && \
+    apt-get install tayga iptables iproute2 -y --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
 COPY docker-entry.sh /
