@@ -28,13 +28,13 @@ _term() {
     ip route del "$TAYGA_CONF_PREFIX" dev nat64
     ip route del "$TAYGA_CONF_DYNAMIC_POOL" dev nat64
     ip link set nat64 down
-    tayga -c "$TAYGA_CONF_DIR" --rmtun
+    tayga -c "$TAYGA_CONF_DIR"/tayga.conf --rmtun
 }
 
 trap _term SIGTERM
 
 # Run Tayga
-tayga -c "$TAYGA_CONF_DIR"/tayga.conf -d &
+tayga -c "$TAYGA_CONF_DIR"/tayga.conf -d >> /proc/1/fd/1 &
 
 child=$!
 wait "$child"
