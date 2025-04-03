@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Create Tayga directories.
 mkdir -p "$TAYGA_CONF_DATA_DIR" "$TAYGA_CONF_DIR"
@@ -22,7 +22,7 @@ ip link set nat64 up
 ip route add "$TAYGA_CONF_DYNAMIC_POOL" dev nat64
 ip route add "$TAYGA_CONF_PREFIX" dev nat64
 
-function cleanup() {
+_term() {
     echo "Caught SIGTERM signal!"
     kill -TERM "$child" 2> /dev/null
     ip route del "$TAYGA_CONF_PREFIX" dev nat64
@@ -31,7 +31,7 @@ function cleanup() {
     tayga -c "$TAYGA_CONF_DIR" --rmtun
 }
 
-trap cleanup SIGTERM 
+trap _term SIGTERM
 
 # Run Tayga
 tayga -c "$TAYGA_CONF_DIR"/tayga.conf -d &
