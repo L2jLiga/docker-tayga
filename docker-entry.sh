@@ -37,4 +37,4 @@ echo 0 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 echo 1 > /proc/sys/net/ipv6/conf/all/forwarding
 
 # Run Tayga
-systemctl start tayga.service
+/etc/init.d/tayga start
