@@ -12,6 +12,8 @@ LABEL \
     org.opencontainers.image.version="0.9.2-10"
 
 ENV \
+	TAYGA_CONF_DATA_DIR=/var/spool/tayga \
+	TAYGA_CONF_DIR=/etc \
     TAYGA_CONF_IPV4_ADDR=172.18.0.100 \
     TAYGA_IPV6_ADDR=fdaa:bb:1::1 \
     TAYGA_CONF_PREFIX=64:ff9b::/96 \
@@ -25,5 +27,4 @@ RUN apt-get update && \
 COPY docker-entry.sh /
 RUN chmod +x /docker-entry.sh
 
-# Labels
 ENTRYPOINT ["/docker-entry.sh"]
